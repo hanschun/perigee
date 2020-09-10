@@ -37,13 +37,14 @@ export const PostsList = (props) => {
     <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Posts: {data.posts.length}</h2>
         <ul className={utilStyles.list}>
-          {data.posts.map(({id, created_at, body}) => (
-            <li className={utilStyles.listItem} key={id}>
+          {data.posts.map(({hash, created_at, body, sender}) => (
+            <li className={utilStyles.listItem} key={hash}>
               <div>{body}</div>
               <br />
               <small className={utilStyles.lightText}>
                 <Date dateString={created_at} />
               </small>
+              <small>{sender.name}</small>
             </li>
           ))}
         </ul>
