@@ -26,6 +26,7 @@ const mainRoutes = (
           redirect_uri={AUTH_CONFIG.callbackUrl}
           audience={AUTH_CONFIG.audience}
           scope={AUTH_CONFIG.scope}
+          cacheLocation={'localstorage'}
           onRedirectCallback={onRedirectCallback}
         >
           {props.children}

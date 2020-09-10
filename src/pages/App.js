@@ -1,7 +1,7 @@
 
 import React from 'react'
-import Header from './Header'
-import {PostsList} from './posts-list'
+import Header from '../components/Header'
+import {PostsList} from '../components/Posts/Posts.List'
 import { useAuth0 } from '@auth0/auth0-react'
 
 export const App = () => {

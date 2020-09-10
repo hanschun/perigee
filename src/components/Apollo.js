@@ -1,7 +1,7 @@
 
 import React from 'react'
 import {ApolloProvider} from '@apollo/client'
-import App from './App'
+import App from '../pages/App'
 
 export const Apollo = ({client}) => {
   return (

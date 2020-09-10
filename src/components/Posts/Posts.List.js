@@ -1,8 +1,8 @@
 import React from 'react'
-import utilStyles from '../styles/utils.module.css'
-import Date from './date'
 import {useQuery} from '@apollo/client'
 import gql from 'graphql-tag'
+import PostItem from './Posts.Item'
+import utilStyles from '../../styles/utils.module.css'
 
 export const GET_SOME_RECENT_POSTS = gql`
   query getSomeRecentPosts($limit: Int) {
@@ -12,6 +12,7 @@ export const GET_SOME_RECENT_POSTS = gql`
       created_at
       sender {
         name
+        avatar
       }
     }
   }
@@ -37,16 +38,7 @@ export const PostsList = (props) => {
     <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Posts: {data.posts.length}</h2>
         <ul className={utilStyles.list}>
-          {data.posts.map(({hash, created_at, body, sender}) => (
-            <li className={utilStyles.listItem} key={hash}>
-              <div>{body}</div>
-              <br />
-              <small className={utilStyles.lightText}>
-                <Date dateString={created_at} />
-              </small>
-              <small>{sender.name}</small>
-            </li>
-          ))}
+          {data.posts.map((post) => <PostItem post={post} />)}
         </ul>
       </section>
   )
