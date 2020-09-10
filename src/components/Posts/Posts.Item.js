@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const PostItem = ({post}) => {
-  const {hash, body, created_at, sender} = post
+  const {body, created_at, sender} = post
   const classes = useStyles();
 
   return (

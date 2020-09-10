@@ -2,7 +2,6 @@ import React from 'react'
 import {useQuery} from '@apollo/client'
 import gql from 'graphql-tag'
 import PostItem from './Posts.Item'
-import utilStyles from '../../styles/utils.module.css'
 import { makeStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography';
