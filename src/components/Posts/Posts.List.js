@@ -3,6 +3,25 @@ import {useQuery} from '@apollo/client'
 import gql from 'graphql-tag'
 import PostItem from './Posts.Item'
 import utilStyles from '../../styles/utils.module.css'
+import { makeStyles } from '@material-ui/core/styles'
+import Paper from '@material-ui/core/Paper'
+import Typography from '@material-ui/core/Typography';
+import List from '@material-ui/core/List';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  list: {
+    width: '100%',
+    maxWidth: '36ch',
+    backgroundColor: theme.palette.background.paper,
+  },
+  inline: {
+    display: 'inline',
+  },
+}))
 
 export const GET_SOME_RECENT_POSTS = gql`
   query getSomeRecentPosts($limit: Int) {
@@ -13,6 +32,7 @@ export const GET_SOME_RECENT_POSTS = gql`
       sender {
         name
         avatar
+        hash
       }
     }
   }
@@ -23,6 +43,7 @@ export const PostsList = (props) => {
     variables: {limit: 5},
     errorPolicy: 'all'
   })
+  const classes = useStyles()
 
 
   if (loading) {
@@ -35,11 +56,13 @@ export const PostsList = (props) => {
   }
 
   return (
-    <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Posts: {data.posts.length}</h2>
-        <ul className={utilStyles.list}>
+    <Paper className={classes.root}>
+        <Typography variant="h3" component="h3" gutterBottom>
+        Posts: {data.posts.length}
+        </Typography>
+        <List className={classes.listt}>
           {data.posts.map((post) => <PostItem post={post} />)}
-        </ul>
-      </section>
+        </List>
+    </Paper>
   )
 }
